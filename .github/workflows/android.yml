@@ -13,10 +13,7 @@ jobs:
       run: export GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} && chmod +x gradlew && ./gradlew assembleDebug
 
     - name: Store generated APK file
-      uses: marvinpinto/action-automatic-releases@latest
+      uses: actions/upload-artifact@v2
       with:
-        repo_token: "${{ secrets.GITHUB_TOKEN }}"
-        automatic_release_tag: "latest"
-        draft: true
-        title: "Release ${{ env.date_now }}"
-        files: ./app/build/outputs/apk/debug/app-debug.apk
+        name: revanced-manager
+        path: ./app/build/outputs/apk/debug/app-debug.apk
